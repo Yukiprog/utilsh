@@ -2,6 +2,14 @@
 
 #ポート開放用スクリプト。0～65535番号の中からIPとキーワードで決定
 
+_usage() {
+    cat <<EOF
+$(basename ${0}) is a tool for calculating port number
+
+Usage: $(basename ${0}) [IPAddress]
+EOF
+}
+
 _check_Ip(){
     IP=$(cat -)
     IP_CHECK=$(echo ${IP} | egrep "^(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$")
@@ -20,6 +28,12 @@ _calc_Port(){
     echo $ori_Number
 }
 
+
+if [ $# -ne 1 ]; then
+    _usage
+    exit 1
+fi
+
 if [ -p /dev/stdin ]; then
     cat -
 else
@@ -31,3 +45,4 @@ if [ $? -eq 0 ]; then
     read your_Secret_Number
     _calc_Port $@ ${your_Secret_Number}
 fi
+
