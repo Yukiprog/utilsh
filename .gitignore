@@ -1,0 +1,15 @@
+# 最初にすべての階層のファイルを無視します
+# 階層は必要なだけ追加する
+### all ignore ###
+/*
+/.**
+
+# whitelist
+!/.gitignore
+!/README.md
+
+!/calc_port.sh
+
+!/disp/
+/disp/*
+
